@@ -37,8 +37,7 @@ class App:
             self.clock.tick(FPS)
         pygame.quit()
         sys.exit()
-
-    
+   
     def draw_text(self,words,screen,pos,size,color,font_name,centered=False):
         font = pygame.font.SysFont(font_name,size)
         text = font.render(words,False,color)
@@ -47,7 +46,6 @@ class App:
             pos[0] -= text_size[0]//2
             pos[1] -= text_size[1]//2
         screen.blit(text,pos)
-
 
     def load(self):
         self.background = pygame.image.load('pacmanbg.png')
@@ -66,13 +64,13 @@ class App:
             self.playerFinder.append(Finder(self, vec(pos)))
 
     def draw_grid(self):
-        for x in range(WIDTH//self.cell_width):
-            pygame.draw.line(self.background,GREY,(x*self.cell_width,0),(x*self.cell_width,HEIGHT))
-        for x in range(HEIGHT//self.cell_height):
-            pygame.draw.line(self.background,GREY,(0,x*self.cell_height),(WIDTH,x*self.cell_height))
-        for wall in self.walls:
-            pygame.draw.rect(self.background,(112,55,163),(wall.x*self.cell_width,wall.y*self.cell_height,self.cell_width,self.cell_height))
-        
+        #for x in range(WIDTH//self.cell_width):
+        #    pygame.draw.line(self.background,GREY,(x*self.cell_width,0),(x*self.cell_width,HEIGHT))
+        #for x in range(HEIGHT//self.cell_height):
+        #    pygame.draw.line(self.background,GREY,(0,x*self.cell_height),(WIDTH,x*self.cell_height))
+        #for wall in self.walls:
+        #    pygame.draw.rect(self.background,(112,55,163),(wall.x*self.cell_width,wall.y*self.cell_height,self.cell_width,self.cell_height))
+        pass
 
     def start_events(self):
         for event in pygame.event.get():
@@ -90,9 +88,6 @@ class App:
         self.draw_text('PACMAN USING BFS',self.screen,[WIDTH//2,HEIGHT//2+50],START_TEXT_SIZE,(44,167,198),START_FONT,centered=True)
         self.draw_text('BFS PATH',self.screen,[4,0],START_TEXT_SIZE,(255,255,255),START_FONT)
         pygame.display.update()
-
-
-
 
     def playing_events(self):
         for event in pygame.event.get():

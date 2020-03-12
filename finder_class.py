@@ -15,10 +15,13 @@ class Finder:
         self.pix_pos += self.direction
         if self.time_to_move():
             self.move()
+            
         self.grid_pos[0] = (self.pix_pos[0]-TOP_BOTTOM_BUFFER +
                             self.app.cell_width//2)//self.app.cell_width+1
         self.grid_pos[1] = (self.pix_pos[1]-TOP_BOTTOM_BUFFER +
                             self.app.cell_height//2)//self.app.cell_height+1
+        
+        
 
     def time_to_move(self):
         if int(self.pix_pos.x+TOP_BOTTOM_BUFFER//2) % self.app.cell_width == 0:
@@ -31,11 +34,20 @@ class Finder:
 
     def move(self):
         if self.personality == "catch":
+            
             self.direction = self.get_path_direction()
+            
+                
+        
 
     def draw(self):
         pygame.draw.circle(self.app.screen,(208,22,22),(int(self.pix_pos.x),int(self.pix_pos.y)),
         self.app.cell_width//2-2 )
+
+        pygame.draw.rect(self.app.screen,RED,
+        (self.grid_pos[0]*self.app.cell_width+TOP_BOTTOM_BUFFER//2,self.grid_pos[1]*self.app.cell_height+TOP_BOTTOM_BUFFER//2,self.app.cell_width,self.app.cell_height), 1)
+        
+        
 
     def get_pix_pos(self):
         return vec((self.grid_pos.x*self.app.cell_width)+TOP_BOTTOM_BUFFER//2+self.app.cell_width//2,(self.grid_pos.y*self.app.cell_height)+TOP_BOTTOM_BUFFER//2+self.app.cell_height//2)
@@ -49,7 +61,7 @@ class Finder:
 
     def find_next_cell_in_path(self):
         path = self.BFS([int(self.grid_pos.x),int(self.grid_pos.y)],[int(self.app.player.grid_pos.x),int(self.app.player.grid_pos.y)])
-
+        pygame.draw.rect(self.app.background,(112,55,163),[int(self.grid_pos.x*self.app.cell_width),int(self.grid_pos.y*self.app.cell_height),self.app.cell_width,self.app.cell_height])
         return path[1]
 
     def BFS(self, start, target):
