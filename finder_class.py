@@ -1,7 +1,7 @@
 import pygame
 from settings import *
 vec = pygame.math.Vector2
-
+fh = open('allPossiblePathsBFS.txt','w')
 class Finder:
     def __init__(self,app,pos):
         self.app = app
