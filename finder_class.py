@@ -87,6 +87,7 @@ class Finder:
                             if next_cell not in visited:
                                 if grid[next_cell[1]][next_cell[0]] != 1:
                                     queue.append(next_cell)
+                                    pygame.draw.rect(self.app.background,(12,55,13),[int(next_cell[0]*self.app.cell_width),int(next_cell[1]*self.app.cell_height),self.app.cell_width,self.app.cell_height])
                                     path.append({"Current": current, "Next": next_cell})
         shortest = [target]
         while target != start:
