@@ -1,7 +1,7 @@
 import pygame
 from settings import *
 vec = pygame.math.Vector2
-fh = open('allPossiblePathsBFS.txt','w')
+
 class Finder:
     def __init__(self,app,pos):
         self.app = app
@@ -73,6 +73,8 @@ class Finder:
         path = []
         visited = []
         while queue:
+            with open('allPossiblePathsBFS.txt','a') as fh:
+                fh.write("\nPath: "+str(queue))
             current = queue[0]
             queue.remove(queue[0])
             visited.append(current)
@@ -95,4 +97,6 @@ class Finder:
                 if step["Next"] == target:
                     target = step["Current"]
                     shortest.insert(0, step["Current"])
+        with open('allPossiblePathsBFS.txt','a') as fh:
+                fh.write("\nOptimal Path: "+str(shortest))
         return shortest
